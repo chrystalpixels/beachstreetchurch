@@ -29,3 +29,7 @@ The reference website was inaccessible during development. Confirm all church-sp
 In the repository's **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source. The `Deploy website to GitHub Pages` workflow builds and deploys every push to `main`. You can also run it manually under **Actions** after enabling Pages.
 
 The expected address after a successful deployment is https://chrystalpixels.github.io/beachstreetchurch/ . Relative build assets support that repository path and a future custom domain.
+
+## Beach Street branding
+
+The site uses the supplied Beach Street Church palette: orange `#db7b26`, aqua `#65b9c8`, seafoam `#80c5b5`, golden yellow `#f3cb6d`, and deep teal `#244e50`. The locally bundled `public/images/beach-street-logo.png` is an AI-prepared recreation of the logo image supplied in chat, rather than the original artwork file. Replace it with the original approved high-resolution logo when available.
