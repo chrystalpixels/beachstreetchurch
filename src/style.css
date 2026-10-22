@@ -17,3 +17,8 @@ header{height:124px;background:#fff}header .brand{width:310px;flex-shrink:0}.bra
 .commitments{margin:26px 0 22px;padding:24px;border-left:3px solid var(--orange);border-radius:0 8px 8px 0;background:#edf7f5}.commitments h3{font-family:'Manrope',sans-serif;font-size:18px;font-weight:700;line-height:1.5;letter-spacing:-.3px;margin-bottom:18px}.commitments ul{list-style:none;padding:0;margin:0;display:grid;gap:16px}.commitments li{position:relative;padding-left:22px}.commitments li:before{content:'✓';position:absolute;left:0;top:0;color:#24676b;font-size:14px;font-weight:700}.commitments strong{display:block;font-size:13px;line-height:1.6}.commitments li span{display:block;font-size:12px;line-height:1.8;color:#5e7475;margin-top:2px}@media(max-width:760px){.commitments{padding:20px}.commitments h3{font-size:17px}}
 
 .welcome-collage{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;margin-top:32px;border-radius:10px}@media(max-width:760px){.welcome-collage{margin-top:24px}}
+
+/* Shared heading, followed by an evenly aligned photo and text row. */
+.welcome{grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:32px 64px;align-items:start}.welcome-heading{grid-column:1/-1}.welcome-collage{max-width:420px;margin:0;justify-self:start}.welcome-copy{padding-top:0}.welcome-copy>p:first-child{margin-top:0}.welcome-copy .text-link{margin-top:0}
+@media(max-width:1050px) and (min-width:761px){.welcome{gap:28px 35px}}
+@media(max-width:760px){.welcome{grid-template-columns:1fr;gap:26px}.welcome-collage{width:100%;max-width:360px;justify-self:center;margin:0}.welcome-copy{padding-top:0}}
