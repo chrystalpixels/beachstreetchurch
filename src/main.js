@@ -1,3 +1,4 @@
+import { renderPage, pageTitles } from './pages.js';
 import './style.css';
 const arrow='<span aria-hidden="true">↗</span>';
 const asset = name => `${import.meta.env.BASE_URL}images/${name}`;
@@ -13,5 +14,37 @@ document.querySelector('#app').innerHTML=`
 <section class="message section" id="message"><div><div class="eyebrow">WHEREVER YOU ARE</div><h2>A moment of <em>inspiration.</em></h2><p>Take a first step, revisit a message, or get a feel for our community.</p></div><a class="button green" href="https://www.youtube.com/@FirstPresDaytona" target="_blank" rel="noopener">Visit our church online ${arrow}</a></section>
 </main><footer><a class="brand" href="#"><img class="brand-logo" src="${asset('beach-street-logo.png')}" alt="Beach Street Church — FPC Daytona" width="360" height="120"></a><p>Rooted in faith. Connected by love.<br>There’s a place for you here.</p><div><a href="#visit">Visit us</a><a href="#connect">Get connected</a><a href="https://fpcdaytona.org" target="_blank" rel="noopener">Church website ↗</a></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} Beach Street Church · FPC Daytona</span><span>All are welcome. Always.</span></div></footer>
 <dialog id="info-dialog"><button class="close-dialog" aria-label="Close dialog">×</button><div class="eyebrow">WE’RE GLAD YOU’RE HERE</div><h2 id="dialog-title"></h2><p id="dialog-copy"></p><a class="button green" href="mailto:beachstreetchurch@gmail.com">Contact the church ${arrow}</a><p class="dialog-note">Service times and ministry availability should be confirmed directly with the church.</p></dialog>`;
+const currentPage = location.pathname.split('/').pop().replace(/\.html$/, '');
+const pageContent = renderPage(currentPage, { asset, arrow });
+if (pageContent) {
+  document.querySelector('main').innerHTML = pageContent;
+  document.title = `${pageTitles[currentPage]} · Beach Street Church`;
+}
+const localPages = {
+  'https://fpcdaytona.org/': 'index',
+  'https://fpcdaytona.org/this-weeks-sermon/': 'worship',
+  'https://fpcdaytona.org/donate-2/': 'donate',
+  'https://fpcdaytona.org/about-2/': 'about',
+  'https://fpcdaytona.org/contact/': 'contact',
+  'https://fpcdaytona.org/fpc-daytona-blog/': 'news',
+  'https://fpcdaytona.org/bscsupports/': 'support',
+};
+document.querySelectorAll('header nav a').forEach(link => {
+  const slug = localPages[link.href];
+  if (slug) {
+    link.href = `./${slug}.html`;
+    if (slug === (pageContent ? currentPage : 'index')) link.setAttribute('aria-current', 'page');
+  }
+});
+document.querySelectorAll('.brand').forEach(link => { link.href = './index.html'; });
+document.querySelectorAll('.announcement a, footer a[href^="#"]').forEach(link => {
+  if (pageContent) link.href = `./index.html${link.getAttribute('href')}`;
+});
+if (!pageContent) {
+  document.querySelectorAll('.cards a.card').forEach(link => {
+    const slug = localPages[link.href];
+    if (slug) link.href = `./${slug}.html`;
+  });
+}
 const menu=document.querySelector('.menu-toggle');menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));document.querySelector('nav').classList.toggle('open',open)});document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{menu.setAttribute('aria-expanded','false');document.querySelector('nav').classList.remove('open')}));
-const dialog=document.querySelector('dialog');function show(title,copy){document.querySelector('#dialog-title').textContent=title;document.querySelector('#dialog-copy').textContent=copy;dialog.showModal()}document.querySelector('#visit-button').onclick=()=>show('Your first Sunday.','We’d love to welcome you. Contact the church to confirm worship times, parking, accessibility, and what to expect for your family.');document.querySelector('#serve-button').onclick=()=>show('Put love into action.','Your time and talents can make a difference. Contact the church to learn about current volunteer opportunities and community partnerships.');document.querySelector('.close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+const dialog=document.querySelector('dialog');function show(title,copy){document.querySelector('#dialog-title').textContent=title;document.querySelector('#dialog-copy').textContent=copy;dialog.showModal()}document.querySelector('#visit-button')?.addEventListener('click',()=>show('Your first Sunday.','We’d love to welcome you. Contact the church to confirm worship times, parking, accessibility, and what to expect for your family.'));document.querySelector('#serve-button')?.addEventListener('click',()=>show('Put love into action.','Your time and talents can make a difference. Contact the church to learn about current volunteer opportunities and community partnerships.'));document.querySelector('.close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});

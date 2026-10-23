@@ -35,3 +35,13 @@ The expected address after a successful deployment is https://chrystalpixels.git
 The site uses the supplied Beach Street Church palette: orange `#db7b26`, aqua `#65b9c8`, seafoam `#80c5b5`, golden yellow `#f3cb6d`, and deep teal `#244e50`. The locally bundled `public/images/beach-street-logo.png` is an AI-prepared recreation of the logo image supplied in chat, rather than the original artwork file. Replace it with the original approved high-resolution logo when available.
 
 The Worship, Volunteer Opportunities, and Fellowship cards use the church-provided theater, kitchen, and boat photographs respectively. The earlier generated illustrations remain available as unused assets.
+
+## Interior pages and worship content
+
+The top navigation now stays on this site: `worship.html`, `donate.html`, `about.html`, `contact.html`, `news.html`, and `support.html`. These are real static HTML entry points built by Vite, so direct links and refreshes work on GitHub Pages without routing redirects.
+
+- Shared page layouts and copy: `src/pages.js`.
+- Worship bulletin, resource URLs, and dated announcements: `src/worship.js`.
+- Shared header/footer and home page: `src/main.js`.
+- Update the October 25, 2026 bulletin date, content, download URL, and related dated announcements together when a new bulletin is supplied.
+- The original website is blocked in the build environment. Worship text and links were supplied by the church in chat; the other pages use confirmed details, including the PayPal destination, phone, mailing address, mission statement, and volunteer sign-up. The historical News archive and complete supported-organization list remain linked to the original site until supplied for migration. External announcement artwork was not downloaded from the blocked domain.
