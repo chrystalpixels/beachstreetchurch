@@ -34,4 +34,4 @@ The expected address after a successful deployment is https://chrystalpixels.git
 
 The site uses the supplied Beach Street Church palette: orange `#db7b26`, aqua `#65b9c8`, seafoam `#80c5b5`, golden yellow `#f3cb6d`, and deep teal `#244e50`. The locally bundled `public/images/beach-street-logo.png` is an AI-prepared recreation of the logo image supplied in chat, rather than the original artwork file. Replace it with the original approved high-resolution logo when available.
 
-The Worship, Volunteer Opportunities, and Fellowship cards use coordinated AI-generated coastal illustrations in the church palette. These depict illustrative scenes rather than photographs of church members.
+The Worship, Volunteer Opportunities, and Fellowship cards use the church-provided theater, kitchen, and boat photographs respectively. The earlier generated illustrations remain available as unused assets.
